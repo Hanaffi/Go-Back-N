@@ -148,8 +148,10 @@ void check_physical_layer(simulator_state *simulator) {
   }
 
   if (simulator->bytes_read_so_far == bytes_to_read) {
-    event_type event = frame_arrival;
-    cb_push_back(&simulator->event_buffer, &event);
+    if ((rand() % 1024) < 896) {
+      event_type event = frame_arrival;
+      cb_push_back(&simulator->event_buffer, &event);
+    }
     simulator->bytes_read_so_far = 0;
   }
 }
