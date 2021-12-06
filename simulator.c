@@ -45,7 +45,8 @@ void simulator_init(simulator_state *ss, size_t event_buffer_capacity,
     ret = bind(ss->connection_socket, (const struct sockaddr *)&name,
                sizeof(name));
     if (ret == -1) {
-      fprintf(stderr, "Error binding connection socket\n");
+      fprintf(stderr, "Error binding connection socket\nPlease delete %s\n",
+              SOCKET_NAME);
       exit(EXIT_FAILURE);
     }
 
