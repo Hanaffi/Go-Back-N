@@ -71,10 +71,12 @@ void ll_add_end(linked_list *ll, seq_nr frame_nr, unsigned long long end_time) {
 void ll_delete(linked_list *ll, linked_list_node *node) {
   if (node->prev == NULL) {
     ll->front = node->next;
-    ll->front->prev = NULL;
+    if (ll->front != NULL)
+      ll->front->prev = NULL;
   } else if (node->next == NULL) {
     ll->end = node->prev;
-    ll->end->next = NULL;
+    if (ll->end != NULL)
+      ll->end->next = NULL;
   } else {
     node->prev->next = node->next;
     node->next->prev = node->prev;
