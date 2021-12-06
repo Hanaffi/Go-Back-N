@@ -17,14 +17,6 @@ typedef struct linked_list {
 
 void ll_init(linked_list *ll);
 
-void ll_add_front(linked_list *ll, seq_nr data, unsigned long long end_time);
-
-void ll_add_after(linked_list *ll, linked_list_node *node, seq_nr data,
-                  unsigned long long end_time);
-
-void ll_add_before(linked_list *ll, linked_list_node *node, seq_nr data,
-                   unsigned long long end_time);
-
 void ll_add_end(linked_list *ll, seq_nr data, unsigned long long end_time);
 
 void ll_delete(linked_list *ll, linked_list_node *node);

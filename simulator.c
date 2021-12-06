@@ -213,12 +213,14 @@ void start_timer(simulator_state *simulator, seq_nr k) {
 }
 
 void stop_timer(simulator_state *simulator, seq_nr k) {
-  if (simulator->timers_list.front->frame_nr == k) {
-    ll_delete(&simulator->timers_list, simulator->timers_list.front);
-  } else {
-    fprintf(stderr, "Error stopping timer: Expected seq_nr (%d), found (%d)\n",
-            simulator->timers_list.front->frame_nr, k);
-    exit(EXIT_FAILURE);
+  linked_list_node *trav;
+  trav = simulator->timers_list.front;
+  while (trav != NULL) {
+    if (trav->frame_nr == k) {
+      ll_delete(&simulator->timers_list, trav);
+      return;
+    }
+    trav = trav->next;
   }
 }
 
@@ -227,5 +229,6 @@ void enable_network_layer(simulator_state *simulator) {
 }
 
 void disable_network_layer(simulator_state *simulator) {
+  printf("Network Layer disabled\n");
   simulator->network_layer_enabled = false;
 }
